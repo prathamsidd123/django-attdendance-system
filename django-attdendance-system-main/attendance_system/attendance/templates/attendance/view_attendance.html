@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>View Attendance</title>
+<style>
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f5f7fa;
+    padding: 40px 20px;
+    color: #333;
+    margin: 0;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-size: 32px;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+th {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #ecf0f1;
+    font-size: 14px;
+}
+
+tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.present {
+    background: #d4edda;
+    color: #155724;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.absent {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.empty {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    color: #7f8c8d;
+    font-size: 16px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Attendance Records</h1>
+    {% if attendance_records %}
+    <table>
+        <tr>
+            <th>Student</th>
+            <th>Date</th>
+            <th>Status</th>
+        </tr>
+        {% for record in attendance_records %}
+        <tr>
+            <td>{{ record.student }}</td>
+            <td>{{ record.date }}</td>
+            <td>
+                {% if record.is_present %}
+                    <span class="present">Present</span>
+                {% else %}
+                    <span class="absent">Absent</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <div class="empty">
+        <p>No attendance records found.</p>
+    </div>
+    {% endif %}
+</div>
+</body>
+</html>

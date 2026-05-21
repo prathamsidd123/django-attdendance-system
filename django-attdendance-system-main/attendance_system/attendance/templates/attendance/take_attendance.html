@@ -1,0 +1,184 @@
+{% extends 'attendance/base.html' %}
+{% block content %}
+<style>
+    .attendance-container {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+    
+    .attendance-card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+    
+    .attendance-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 24px;
+    }
+    
+    .attendance-header h4 {
+        margin: 0;
+        font-size: 24px;
+        font-weight: 600;
+    }
+    
+    .attendance-body {
+        padding: 30px;
+    }
+    
+    .form-label {
+        display: block;
+        color: #555;
+        font-weight: 600;
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+    
+    .form-control {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+        transition: border-color 0.3s ease;
+    }
+    
+    .form-control:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+    
+    .date-section {
+        margin-bottom: 30px;
+    }
+    
+    .students-section {
+        margin: 30px 0;
+    }
+    
+    .students-heading {
+        font-size: 16px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 16px;
+    }
+    
+    .student-item {
+        padding: 14px;
+        border: 1px solid #ecf0f1;
+        border-radius: 4px;
+        margin-bottom: 10px;
+        background: #f8f9fa;
+        transition: background 0.2s ease;
+    }
+    
+    .student-item:hover {
+        background: #f0f1ff;
+        border-color: #667eea;
+    }
+    
+    .form-check {
+        display: flex;
+        align-items: center;
+        margin: 0;
+    }
+    
+    .form-check-input {
+        width: 20px;
+        height: 20px;
+        margin-right: 12px;
+        cursor: pointer;
+        accent-color: #667eea;
+    }
+    
+    .form-check-label {
+        margin: 0;
+        cursor: pointer;
+        font-size: 14px;
+        color: #333;
+    }
+    
+    .button-group {
+        display: flex;
+        gap: 10px;
+        margin-top: 30px;
+    }
+    
+    .btn {
+        padding: 12px 24px;
+        border: none;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+    }
+    
+    .btn-success {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        flex: 1;
+    }
+    
+    .btn-success:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+    
+    .btn-secondary {
+        background: #e0e0e0;
+        color: #333;
+        flex: 1;
+    }
+    
+    .btn-secondary:hover {
+        background: #d0d0d0;
+    }
+</style>
+
+<div class="attendance-container">
+    <div class="attendance-card">
+        <div class="attendance-header">
+            <h4>Take Attendance - {{ subject.name }}</h4>
+        </div>
+        <div class="attendance-body">
+            <form method="post">
+                {% csrf_token %}
+                
+                <div class="date-section">
+                    <label for="date" class="form-label">Date</label>
+                    <input type="date" class="form-control" id="date" name="date" value="{{ today|date:'Y-m-d' }}" required>
+                </div>
+                
+                <h5 class="students-heading">Mark Student Attendance:</h5>
+                <div class="students-section">
+                    {% for student in students %}
+                    <div class="student-item">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="student_{{ student.id }}" 
+                            name="student_{{ student.id }}" checked>
+                            <label class="form-check-label" for="student_{{ student.id }}">
+                                {{ student.username }} ({{ student.first_name }} {{ student.last_name }})
+                            </label>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <div class="button-group">
+                    <button type="submit" class="btn btn-success">Save Attendance</button>
+                    <a href="{% url 'dashboard' %}" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
