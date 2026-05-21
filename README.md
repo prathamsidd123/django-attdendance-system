@@ -1,4 +1,4 @@
-<img width="1920" height="1080" alt="Screenshot from 2026-05-21 20-11-55" src="https://github.com/user-attachments/assets/29f7f7be-c121-4fa2-bd5e-18b4a5f70a82" /># Django Attendance System
+# Django Attendance System
 
 A simple Attendance Management System built with Django.  
 This project allows teachers to manage subjects and attendance records while students can view their attendance dashboard.
