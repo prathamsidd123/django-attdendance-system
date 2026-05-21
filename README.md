@@ -67,6 +67,12 @@ django-attdendance-system/
 ```
 
 ---
+# Navigate to directory
+```bash
+pratham@pratham-HP-EliteBook-840-G4:~/Downloads/Django_Attendence_Project_Github$ cd django-attdendance-system-main
+pratham@pratham-HP-EliteBook-840-G4:~/Downloads/Django_Attendence_Project_Github/django-attdendance-system-main$ cd attendance_system
+
+```
 # Create Superuser
 
 ```bash
