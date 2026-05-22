@@ -126,22 +126,3 @@ http://127.0.0.1:8000/admin/
 <img width="1920" height="1080" alt="Screenshot from 2026-05-21 20-11-55" src="https://github.com/user-attachments/assets/492b0e7c-6d0d-47c9-ae97-fda527742f24" />
 
 ---
-
-# Future Improvements
-
-- Attendance Percentage
-- Export PDF Reports
-- Email Notifications
-- Better UI Design
-- Search & Filters
-
----
-
-# Author
-
-Pratham Siddhpura
-
-
-# License
-
-This project is made for learning purposes.
